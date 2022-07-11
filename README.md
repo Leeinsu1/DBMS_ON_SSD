@@ -266,6 +266,42 @@ $ mvn -pl site.ycsb:rocksdb-binding -am clean package
 ```
 Reference: https://github.com/meeeejin/til/blob/master/benchmark/how-to-install-ycsb-for-rocksdb.md
 
+3. Workload 수정
+```sh
+# Yahoo! Cloud System Benchmark
+# Workload A: Update heavy workload
+#   Application example: Session store recording recent actions
+#
+#   Read/update ratio: 50/50
+#   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
+#   Request distribution: zipfian
+
+# 1G : 0 6개
+# 40000000 --> 44GB
+# 85000000 --> 93GB
+# 125000000 --> 137GB
+recordcount=40000000
+operationcount=2000000000
+workload=site.ycsb.workloads.CoreWorkload
+maxexecutiontime=7200
+
+readallfields=true
+
+readproportion=0.5
+updateproportion=0.5
+scanproportion=0
+insertproportion=0
+
+requestdistribution=zipfian
+```
+
+4. YCSB 실행
+```sh
+./bin/ycsb load rocksdb -s -P workloads/[yourWorkload] -threads 8 -p rocksdb.dir=/path/to/datadir
+
+./bin/ycsb run rocksdb -s -P workloads/[yourWorkload] -threads 8 -p rocksdb.dir=/path/to/datadir 2>&1 | tee [Experiment Name].dat
+```
+
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
