@@ -202,6 +202,7 @@ root:mysql> quit;
 4. TPC-C, 로그 쉘 시작
 ```sh
 //다운로드 //두개 커맨드 중 택 1
+//Warehouse Number: 500, 1000, 1500
 ./tpcc_load -h 127.0.0.1 -d tpcc -u root -p "yourPassword" -w [Warehouse Number]
 ./load.sh tpcc [Warehouse Number]
 
