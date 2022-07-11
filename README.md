@@ -204,7 +204,7 @@ root:mysql> quit;
 ```sh
 ./log_write.sh
 
-./tpcc_start -h 127.0.0.1 -S /tmp/mysql.sock -d tpcc -u root -p "yourPassword" -w [Warehouse #] -c 8 -r 10 -l [Run Time] | tee [Experiment Name].txt
+./tpcc_start -h 127.0.0.1 -S /tmp/mysql.sock -d tpcc -u root -p "yourPassword" -w [Warehouse Number] -c 8 -r 10 -l [Run Time] | tee [Experiment Name].txt
 
 ```
 ## RocksDB, YCSB 실험
