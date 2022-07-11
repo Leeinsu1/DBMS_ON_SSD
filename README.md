@@ -201,8 +201,13 @@ root:mysql> quit;
 ```
 4. TPC-C, 로그 쉘 시작
 ```sh
-./log_write.sh
+//다운로드 //두개 커맨드 중 택 1
+./tpcc_load -h 127.0.0.1 -d tpcc -u root -p "yourPassword" -w [Warehouse Number]
+./load.sh tpcc [Warehouse Number]
 
+
+//다운로드 완료 후 // ps -ef | grep tpcc 로 다운로드 종료 여부 확인
+./log_write.sh
 ./tpcc_start -h 127.0.0.1 -S /tmp/mysql.sock -d tpcc -u root -p "yourPassword" -w [Warehouse Number] -c 8 -r 10 -l [Run Time] | tee [Experiment Name].txt
 
 ```
@@ -297,8 +302,11 @@ requestdistribution=zipfian
 
 4. YCSB 실행
 ```sh
+//Data Download
 ./bin/ycsb load rocksdb -s -P workloads/[yourWorkload] -threads 8 -p rocksdb.dir=/path/to/datadir
 
+//다운로드 
+./log_write.sh
 ./bin/ycsb run rocksdb -s -P workloads/[yourWorkload] -threads 8 -p rocksdb.dir=/path/to/datadir 2>&1 | tee [Experiment Name].dat
 ```
 
