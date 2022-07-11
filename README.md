@@ -18,10 +18,12 @@ Reference: https://jeong-pro.tistory.com/239
 
 ### TPC-C
 TPC란 Transaction Processing Performance Council 에서 발표한 벤치마크 모델들이다. TCP는 OLTP 시스템의 처리 성능을 평가하는 기준이 된다. 그 중 TPC-C는 TPC-A 모델이나 TPC-B 모델보다 복잡한 유통업의 수주·발주 OLTP 성능 평가를 위한 벤치마크 모델이다.
+
 ### RocksDB
+RocksDB는 SSD에 최적화된 Key-Value 형태의 로그 구조 데 이터베이스 엔진이다. RocksDB의 데이터 저장 구조는 Log-Structured Merge Tree(LSM-tree)를 기반으로 한다. RocksDB는 쓰기 요청 시 메모리의 Active Memtable이란 이름의 임시 버퍼에 데이터를 쓴다. 해당 Memtable이 일정 크기가 되면 읽기 전용 Memtable이 되고, 일정 개수 이상의 Memtable이 모이면 저장 장치에 내려가(flush) SST 파일 형태로 저장된다. 따라서 RocksDB는 SST 파일 단위로(기본 64MB) I/O를 진행하고, 데이터를 append-only 로그에 저장함으로써 순차 쓰기를 보장한다.
 
 ### YCSB
-
+YCSB(Yahoo! Cloud Serving Benchmark)는 클라우드 서비스와 NoSQL의 성능을 측정하기위한 벤치마크 툴이다. YCSB는 기본적으로 제공하는 다른 작동방식을 가진 workload들이 있다. 또 사용자가 이를 수정하거나 직접 만들어 사용할 수도 있다.
 ### 파일 시스템
 
 ### 성능 측정 지표
