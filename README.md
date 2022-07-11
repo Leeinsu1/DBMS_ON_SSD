@@ -51,6 +51,54 @@ npm test
 
 학번 - 이름 - github주소 - 이메일
 
+## SSD 초기화 및 File System Mount
+1. 기존 SSD Unmount
+```sh
+sudo umount /dev/[PARTITION]
+```
+
+2. SSD Blksidcard
+```sh
+sudo blkdiscard /dev/[DEVICE]
+```
+
+3. 파디션 생성
+```sh
+sudo fdisk /dev/[DEVICE]
+//command: n (new partition), w (write, save)
+//Whole SSD in 1 partition
+```
+
+4. File system 생성
+```sh
+//F2FS
+sudo mkfs.f2fs /dev/[PARTITION] -f
+
+//Ext4
+sudo mkfs.ext4 /dev/[PARTITION] -E discard,lazy_itable_init=0,lazy_journal_init=0 -F
+
+//XFS
+sudo mkfs.xfs /dev/[PARTITION] -f
+```
+
+5. Data directory에 mount
+```sh
+//F2FS default
+sudo mount /dev/[PARTITION] /path/to/datadir 
+
+//F2FS lfs mode
+sudo mount -o mode=lfs /dev/[PARTITION] /path/to/datadir 
+
+///Ext4, XFS
+sudo mount -o discard /dev/[PARTITION] /path/to/datadir 
+```
+
+6. 권한 설정
+```sh
+sudo chown -R USER[:GROUP] /path/to/datadir 
+sudo chmod -R 777 /path/to/datadir
+```
+
 ## MySQL , TPC-C 실험
 
 ## RocksDB, YCSB 실험
