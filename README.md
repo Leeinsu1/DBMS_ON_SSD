@@ -67,7 +67,7 @@ sudo umount /dev/[PARTITION]
 sudo blkdiscard /dev/[DEVICE]
 ```
 
-3. 파디션 생성
+3. 파션 생성
 ```sh
 sudo fdisk /dev/[DEVICE]
 //command: n (new partition), w (write, save)
@@ -209,7 +209,6 @@ root:mysql> quit;
 ## RocksDB, YCSB 실험
 1. Install RocksDB  
 
-pre-requisites
 - Upgrade gcc version at least 4.8
 - gflags: `sudo apt-get install libgflags-dev`
   If this doesn't work, here's a nice tutorial:
@@ -228,7 +227,6 @@ Reference: https://github.com/meeeejin/SWE3033-F2021/blob/main/week-6/README.md
 
 2. Install YCSB
 
-pre-requisites
 - Java:
 
 ```bash
@@ -266,6 +264,7 @@ $ git clone https://github.com/brianfrankcooper/YCSB
 $ cd YCSB
 $ mvn -pl site.ycsb:rocksdb-binding -am clean package
 ```
+Reference: https://github.com/meeeejin/til/blob/master/benchmark/how-to-install-ycsb-for-rocksdb.md
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
