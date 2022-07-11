@@ -173,6 +173,8 @@ innodb_flush_method=fsync
 //SSD 초기화 및 File System Mount
 ...
 ...
+//
+
 
 ./bin/mysqld --initialize --user=mysql --datadir=/path/to/datadir --basedir=/path/to/basedir
 
