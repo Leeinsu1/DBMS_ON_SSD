@@ -104,7 +104,7 @@ sudo chown -R USER[:GROUP] /path/to/datadir
 sudo chmod -R 777 /path/to/datadir
 ```
 
-## MySQL , TPC-C 실험
+## MySQL, TPC-C 실험
 1. Install MySQL 5.7 and TPC-C  
 Reference the [installation guide](https://github.com/meeeejin/SWE3033-F2021/blob/main/week-1/reference/tpcc-mysql-install-guide.md) to install and run TPC-C benchmark on MySQL 5.7
 
@@ -175,7 +175,6 @@ innodb_flush_method=fsync
 ...
 //
 
-
 ./bin/mysqld --initialize --user=mysql --datadir=/path/to/datadir --basedir=/path/to/basedir
 
 ./bin/mysqld_safe --skip-grant-tables --datadir=/path/to/datadir
@@ -208,6 +207,65 @@ root:mysql> quit;
 
 ```
 ## RocksDB, YCSB 실험
+1. Install RocksDB  
+
+pre-requisites
+- Upgrade gcc version at least 4.8
+- gflags: `sudo apt-get install libgflags-dev`
+  If this doesn't work, here's a nice tutorial:
+  (http://askubuntu.com/questions/312173/installing-gflags-12-04)
+- snappy: `sudo apt-get install libsnappy-dev`
+- zlib: `sudo apt-get install zlib1g-dev`
+- bzip2: `sudo apt-get install libbz2-dev
+
+```sh
+git clone https://github.com/facebook/rocksdb
+cd rocksdb
+make
+make check
+```
+Reference: https://github.com/meeeejin/SWE3033-F2021/blob/main/week-6/README.md
+
+2. Install YCSB
+
+pre-requisites
+- Java:
+
+```bash
+$ sudo apt-get install openjdk-8-jdk
+$ javac -version
+javac 1.8.0_292
+$ which javac
+/usr/bin/javac
+$ readlink -f /usr/bin/javac
+/usr/lib/jvm/java-8-openjdk-amd64
+$ sudo vi /etc/profile
+...
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+$ source /etc/profile
+$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64 
+```
+
+- Maven 3:
+
+```bash
+$ sudo apt-get install maven
+```
+
+
+1. Clone the [YCSB](https://github.com/brianfrankcooper/YCSB) git repository:
+
+```bash
+$ git clone https://github.com/brianfrankcooper/YCSB
+```
+
+2. Compile:
+
+```bash
+$ cd YCSB
+$ mvn -pl site.ycsb:rocksdb-binding -am clean package
+```
 
 <!-- Markdown link & img dfn's -->
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
