@@ -163,6 +163,13 @@ sudo chown -R USER[:GROUP] /path/to/datadir
 sudo chmod -R 777 /path/to/datadir
 ```
 
+* F2FS의 경우 File System Log를 위해 추가적인 작업을 수행 해야 함.
+```sh
+sudo -E bash
+echo 1 > /sys/fs/f2fs/[PARTITION]/iostat_enable
+exit;
+```
+
 ## MySQL, TPC-C 실험
 1. Install MySQL 5.7 and TPC-C  
 Reference the [installation guide](https://github.com/meeeejin/SWE3033-F2021/blob/main/week-1/reference/tpcc-mysql-install-guide.md) to install and run TPC-C benchmark on MySQL 5.7
